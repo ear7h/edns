@@ -2,6 +2,15 @@
 
 this package is a successor to the e7 protocol. Rather than using a distributed architecture with each node a dns server. edns uses a master-slave architecture with the master node being the only dns server. 
 
+
+## contents
+* child/ - package for child server
+    * use own repository to run
+* master/ - package for dns server
+    * use own repository to run
+* edns/ - main package for administration through cli
+* client_functions.go - exported library functions for programmatic administration
+
 ## differences from e7
 * redis as a back end
 * *username* and password authentication

@@ -1,7 +1,7 @@
 /*
 this package controls a child via local http calls
  */
-package client
+package edns
 
 import (
 	"strconv"

@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strconv"
 	"strings"
-	"github.com/ear7h/edns/client"
+	"github.com/ear7h/edns"
 )
 
 var name string
@@ -48,14 +48,14 @@ func main() {
 	}
 
 	if getPort {
-		l := client.Listen(name, nodeIp)
+		l := edns.Listen(name, nodeIp)
 
 		addr := l.Addr().String()
 		addr = addr[:strings.LastIndex(addr, ":")]
 		fmt.Println(addr)
 		l.Close()
 	} else {
-		client.Register(name, port, nodeIp)
+		edns.Register(name, port, nodeIp)
 	}
 
 
