@@ -1,3 +1,6 @@
 [submodule "master"]
 	path = master
 	url = https://github.com/ear7h/edns-master
+[submodule "child"]
+	path = child
+	url = https://github.com/ear7h/edns-child
