@@ -9,12 +9,16 @@ import (
 	"strconv"
 	"strings"
 	"github.com/ear7h/edns"
+	"golang.org/x/crypto/ssh/terminal"
+	"syscall"
+	"io/ioutil"
 )
 
 var name string
 var nodeIp string
 var port uint
 var getPort bool
+var makePassword bool
 
 func init() {
 	flag.StringVar(&name,"n", "", "name of service")
@@ -24,11 +28,30 @@ func init() {
 	flag.UintVar(&port,"p", 0, "port for the service")
 
 	flag.BoolVar(&getPort, "g", false, "if this flag is set, this program will automatically find a port and write it to stdout")
+
+	flag.BoolVar(&makePassword, "pass", false, "command to make password file")
+}
+
+func makePass() {
+	fmt.Print("Enter Password: ")
+	byt, err := terminal.ReadPassword(int(syscall.Stdin))
+	if err != nil {
+		panic(err)
+	}
+
+	err = ioutil.WriteFile("/var/ear7h/edns/password.txt", byt, 0600)
+	if err != nil {
+		panic(err)
+	}
 }
 
 func main() {
 	flag.Parse()
 
+	if makePassword {
+		makePass()
+		return
+	}
 
 	if flag.NArg() == 2 {
 		name = flag.Arg(0)
